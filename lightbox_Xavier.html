@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>lightbox</title>
+		<style>
+		* {
+			font-family: 'PingFang TC';
+			color: #66666E;
+			outline: none;
+		}
+/**/
+		html, 
+		body {
+			margin: 0;
+			padding: 0;
+			text-align: center;
+		}			
+
+		#back1 {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			width: 100vw;
+			height: 100vh;
+		}
+
+		/* 按鈕小容器 */
+		#box1{
+			width: 200px;
+			height: 200px;
+			background-color: #f2f2f2;
+			border-radius: 50%;
+		}
+
+		/* 開燈按鈕 */
+		.btn-light{
+			width: 100px;
+			height: 100px;
+			position: relative;
+			top: 50px;
+			border: none;
+			border-radius: 50%;
+			background: #f2f2f2;
+			transition: all 100ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+			box-shadow: 0px -6px 10px white, 0px 4px 15px rgba(0, 0, 0, 0.15);
+			cursor: pointer;
+		}
+
+		.btn-light:active {
+			box-shadow: inset 0px -2px 5px rgb(255, 255, 255),inset 0px 2px 5px rgba(0, 0, 0, 0.15);
+		}
+
+		/* lightbox容器 */
+		#box2-wrap{
+			/* 先隱藏元素 */
+			display: none;
+			/* 置中對齊 */
+			justify-content: center;
+			align-items: center;
+			width: 100vw;
+			height: 100vh;
+			background-color: rgba(0,0,0,0.7);
+			position: fixed;
+			top: 0;
+			left: 0;
+		}
+
+		/* lightbox中間小容器 */
+		#box2{
+			width: 300px; 
+			height: 300px; 
+			/* background-color: #ccc; */
+			position: relative;
+			/* text-align: center; */
+			/* 燈泡尺寸 */
+			font-size: 60px;
+		}
+
+		/* lightbox x按鈕 */
+		.close{
+			border-radius: 50%;
+			width: 30px;
+			height: 30px;
+			background-color: #ef8989;
+			color: #fff;
+			position: absolute;
+			top: 0;
+			right: 0;
+			font-size: 20px;
+			line-height: 20px;
+			cursor: pointer;			
+		}
+
+		.close:hover {
+			background-color: #d24424;
+		}
+		</style>
+
+	</head>
+	<body>
+		<div id="back1">
+			<h3>LightBox</h3>
+			<p>please press the button</p>
+			<div id="box1">
+				<button class="btn-light" type="button"></button>	
+				<div id="box2-wrap">
+					<div id="box2">		
+						<h1>💡</h1>
+						<button class="close">x</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script src="https://code.jquery.com/jquery-3.4.1.min.js"integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>	
+
+		<script>
+			// 定義jquery(.btn-light)點擊事件
+			$(".btn-light").click(function(){
+				// 淡入
+				$("#box2-wrap").fadeIn();
+				// 以flex方式顯示
+				$("#box2-wrap").css("display", "flex");
+			});
+
+			// 定義jquery(.close)按鈕點擊事件
+			$(".close").click(function(){
+				// 淡出
+				$("#box2-wrap").fadeOut();
+			});
+		</script>
+	</body>
+	</html>	
